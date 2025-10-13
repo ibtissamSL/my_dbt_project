@@ -1,3 +1,4 @@
+-- reviewed code
 WITH monthly_users_recap AS (
 
 
@@ -20,7 +21,7 @@ GROUP BY order_month
 ), monthly_orders_recap AS (
 
 
-SELECT DATE_TRUNC(order_date,month) AS order_months,
+SELECT DATE_TRUNC(order_date,month) AS order_month,
 COUNT(order_id) AS total_monthly_orders
 FROM {{ source('sales_database', 'order')}}
 GROUP BY order_month
@@ -35,8 +36,8 @@ WHERE price > 7000
 )
 SELECT u.order_month,
 COALESCE(u.total_monthly_users,0) AS nb_users_monthly,
-COALESCE(jt.total_monthly_users_from_jawa_timur,0) AS total_monthly_user,
-COALESCE(o.total_monthly_orders,0) AS monthly_order_count
+COALESCE(jt.total_monthly_users_from_jawa_timur,0) AS nb_monthly_user--total_monthly_user,
+COALESCE(o.total_monthly_orders,0) AS nb_order_count--monthly_order_count
 FROM monthly_users_recap AS u
 LEFT JOIN total_monthly_user_from_jawa_timur AS jt ON jt.order_month = u.order_month
 LEFT JOIN monthly_orders_recap AS o ON o.order_month = u.order_month
