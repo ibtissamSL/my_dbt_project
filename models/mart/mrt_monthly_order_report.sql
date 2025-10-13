@@ -1,3 +1,4 @@
+-- comment added for PR testing
 WITH monthly_users_recap AS (
 
 
