@@ -1,3 +1,4 @@
+--comment 
 WITH monthly_users_recap AS (
 
 
