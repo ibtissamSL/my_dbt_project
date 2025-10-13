@@ -1,8 +1,3 @@
-<<<<<<< HEAD
--- reviewed code
-=======
--- comment added for PR testing
->>>>>>> e08922be932fad8fe1c64076310085c6b8ff48d1
 WITH monthly_users_recap AS (
 
 
