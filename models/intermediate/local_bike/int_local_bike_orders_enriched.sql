@@ -36,21 +36,8 @@ select
     o.order_date,
     o.required_date,
     o.shipped_date,
-    DATE_DIFF(cast(o.shipped_date as date), o.order_date, DAY) as order_delay_days
-    /*o.order_id,
-    o.customer_id,                      -- garde celui de la commande
-    c.first_name || ' ' || c.last_name as customer_name,
-    o.staff_id,
-    s.first_name || ' ' || s.last_name as staff_name,
-    o.store_id,
-    st.store_name,
-    st.city,
-    st.state,
-    o.order_status,
-    o.order_date,
-    o.required_date,
-    o.shipped_date--,
-    --date_diff(day, o.order_date, o.shipped_date) as order_delay_days*/
+    --DATE_DIFF(cast(o.shipped_date as date), o.order_date, DAY) as order_delay_days
+    DATE_DIFF(CAST(NULLIF(shipped_date, 'NULL') AS DATE),order_date,DAY)AS order_delay_days
 from orders o
 left join customers c on o.customer_id = c.customer_id
 left join staffs s on o.staff_id = s.staff_id
