@@ -34,12 +34,16 @@ select
     oi.quantity,
     oi.list_price,
     oi.discount,
-    (oi.quantity * oi.list_price * (1 - oi.discount)) as sales_amount,
+    (oi.quantity * oi.list_price * (1 - oi.discount)) as net_sales,
     orders.store_id,
     orders.store_name,
+    orders.city,
+    orders.state,
     orders.order_date,
     orders.staff_id,
-    orders.customer_id
+    orders.customer_id,
+    orders.order_status,
+    orders.order_delay_days    
 from order_items oi
 left join products p on oi.product_id = p.product_id
 left join brands b on p.brand_id = b.brand_id

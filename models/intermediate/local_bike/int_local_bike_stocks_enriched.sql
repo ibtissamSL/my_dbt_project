@@ -16,7 +16,8 @@ select
     p.product_name,
     b.brand_name,
     c.category_name,
-    st.quantity
+    st.quantity,
+    st.quantity * p.list_price as stock_value -- 
 from {{ ref('stg_local_bike_stocks') }} st
 left join {{ ref('stg_local_bike_stores') }} s on st.store_id = s.store_id
 left join {{ ref('stg_local_bike_products') }} p on st.product_id = p.product_id
